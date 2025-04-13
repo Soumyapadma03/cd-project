@@ -1,0 +1,21 @@
+---
+- name: Deploy Artifact to Server
+  hosts: web
+  become: true
+  tasks:
+    - name: Create deployment folder
+      file:
+        path: /opt/myapp
+        state: directory
+        mode: '0755'
+
+    - name: Copy artifact to server
+      copy:
+        src: artifacts/app.jar
+        dest: /opt/myapp/app.jar
+        mode: '0755'
+
+    - name: Restart app service (if you have one)
+      shell: "systemctl restart myapp"
+      ignore_errors: yes
+
