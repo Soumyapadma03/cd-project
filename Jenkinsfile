@@ -13,9 +13,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh """
-                    /bin/sh -c '$ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini'
-                """
+                sh '/bin/sh -c "/opt/homebrew/bin/ansible-playbook -i inventory/hosts.ini playbooks/deploy.yml"'
             }
         }
     }
