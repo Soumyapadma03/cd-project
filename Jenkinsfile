@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        // Ensure the correct path to Ansible is included
-        PATH = "/opt/homebrew/bin:${env.PATH}"
+        ANSIBLE_PATH = '/opt/homebrew/bin/ansible-playbook'
     }
 
     stages {
@@ -14,7 +13,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                ansiblePlaybook credentialsId: 'ansible-ssh-key', inventory: 'inventory/hosts.ini', playbook: 'playbooks/deploy.yml'
+                sh """
+                    $ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini
+                """
             }
         }
     }
