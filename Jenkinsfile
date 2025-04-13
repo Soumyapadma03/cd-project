@@ -9,8 +9,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying with Ansible...'
-                sh label: 'Run Ansible Playbook', script: '/bin/sh -c "/opt/homebrew/bin/ansible-playbook -i inventory/hosts.ini playbooks/deploy.yml"'
+                sh """
+                  $ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini
+                """
             }
         }
     }
