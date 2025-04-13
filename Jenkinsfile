@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        ANSIBLE_PATH = '/opt/homebrew/bin/ansible-playbook'  // Make sure this path is correct
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -16,6 +20,7 @@ pipeline {
         }
     }
 }
+
 
 
 
