@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         ANSIBLE_PATH = '/opt/homebrew/bin/ansible-playbook'
-    }
-
+    }                                         
+  
     stages {
         stage('Checkout') {
             steps {
@@ -14,11 +14,12 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                    $ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini
+                    /bin/sh -c '$ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini'
                 """
             }
         }
     }
 }
+
 
 
