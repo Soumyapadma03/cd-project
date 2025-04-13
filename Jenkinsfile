@@ -1,14 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        ANSIBLE_PATH = '/opt/homebrew/bin/ansible-playbook'
-    }
-
-    options {
-        shell('/bin/sh')  // 👈 force Jenkins to use system sh
-    }                                         
-  
     stages {
         stage('Checkout') {
             steps {
@@ -22,6 +14,7 @@ pipeline {
         }
     }
 }
+
 
 
 
