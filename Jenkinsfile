@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // Ensure the correct path to Ansible is included
+        PATH = "/opt/homebrew/bin:${env.PATH}"
+    }
+
     stages {
         stage('Checkout') {
             steps {
