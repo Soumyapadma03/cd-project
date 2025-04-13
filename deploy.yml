@@ -1,0 +1,10 @@
+cat << 'EOF' > playbooks/deploy.yml
+- name: Deploy artifact
+  hosts: web
+  tasks:
+    - name: Copy artifact to server
+      copy:
+        src=artifacts/app.jar
+        dest=/opt/app/app.jar
+EOF
+
