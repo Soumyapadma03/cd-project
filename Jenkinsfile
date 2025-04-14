@@ -13,9 +13,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh """
-                 /bin/bash $ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini
-                """
+              sh'/bin/bash -c "$ANSIBLE_PATH playbooks/deploy.yml -i inventory/hosts.ini"'
             }
         }
     }
